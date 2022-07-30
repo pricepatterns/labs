@@ -2,7 +2,7 @@
 
 [![Demo](https://storage.googleapis.com/claat/demo.png)](https://storage.googleapis.com/claat/demo.mp4)
 
-Codelabs are interactive instructional tutorials, which can be authored in Google Docs
+The price patterns learning lab web app is powered by Google Codelabs. Codelabs are interactive instructional tutorials, which can be authored in Google Docs
 using some simple formatting conventions. You can also author codelabs using markdown syntax.
 This repo contains all the tools and documentation you’ll need for building and publishing
 your own codelabs.
