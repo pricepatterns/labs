@@ -1,0 +1,29 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-07-30T23:15:57Z",
+  "id": "firelabs-ed-tech-webapp",
+  "duration": 28,
+  "title": "Build \u0026 Deploy: An Ed-Tech Web App To Manage Crypto Training Docs On Firebase (For Free)",
+  "authors": "Chris Berno",
+  "summary": "In this codelab, you'll build a fully functional web application for documenting, indexing and publishing interactive lessons and tutorials online. Online learners will be able to access well organized and easy to use tutorials from any browser and keep track of their progress from step one through to completion.",
+  "source": "1JMls5NpH7Nk-GVBu3eP8n_YCt3eJc7W-3modHYGNxnU",
+  "theme": "edtech",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "edtech",
+    "software",
+    "development",
+    "onlinelearning",
+    "firebase"
+  ],
+  "tags": [
+    "edtech"
+  ],
+  "feedback": "https://docs.google.com/document/d/1JMls5NpH7Nk-GVBu3eP8n_YCt3eJc7W-3modHYGNxnU/edit?usp=sharing",
+  "url": "firelabs-ed-tech-webapp"
+}

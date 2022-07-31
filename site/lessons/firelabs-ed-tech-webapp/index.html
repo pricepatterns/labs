@@ -1,0 +1,286 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Build &amp; Deploy: An Ed-Tech Web App To Manage Crypto Training Docs On Firebase (For Free)</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="firelabs-ed-tech-webapp"
+                  title="Build &amp; Deploy: An Ed-Tech Web App To Manage Crypto Training Docs On Firebase (For Free)"
+                  environment="web"
+                  feedback-link="https://docs.google.com/document/d/1JMls5NpH7Nk-GVBu3eP8n_YCt3eJc7W-3modHYGNxnU/edit?usp=sharing">
+    
+      <google-codelab-step label="Introduction" duration="0">
+        <p class="image-container"><img style="width: 536.00px" src="img/c27bd67db9046c38.png"></p>
+<p><strong>Last Updated:</strong> 2021-07-18</p>
+<p>(🚀Skip ahead to section 2 if you don&#39;t need all the background stuff)</p>
+<h2 is-upgraded><strong>Build A Web App For Publishing Training Docs</strong></h2>
+<p>Distributing instructional content online, in a way that flows like it might with a live trainer can be a challenge for instructors. The COVID-19 pandemic has forced instructors, across all industries to migrate away from in-person training and into online learing environments. Video conference tools like <a href="https://hangouts.google.com/" target="_blank">Hangouts</a>,  <a href="https://zoom.us/" target="_blank">Zoom</a> and even YouTube provide audio and visual support, but what about the accompanying traning materials? Instructors need a digital framework to distribute written training materials.  That&#39;s where <a href="https://codelabs.developers.google.com/" target="_blank">Google Codelabs</a> can help, as it provides a structured framework for delivering interactive and visually appealing training documents online. Codelabs helps instructors on any topic easily write lesson content in their Google Docs environment and then import that content into an application that students can use in any browser, and on any device. Below are just a few of the features of CodeLabs and why we used it&#39;s opensource code as the basis for our ed-teach app FireLabs. </p>
+<h3 is-upgraded><strong>Powerful, Familiar &amp; Opensource</strong></h3>
+<p>Although there are many ways to develop and distritube instructional content online, we wanted a fully inclusive soluton that would make it as easy as possible for subject matter expert insturctors to contribute content regardless of their ability to pay for web related services and without writing any code. G Suite, which includes Gmail, Google Docs and other apps seemed like a great place to start. It seemed eveyone we worked with had access and some level of familiarity with Gsuite, and the data supports our assumption as in 2020, <a href="https://www.axios.com/google-g-suite-total-users-9a6d3df6-c990-4866-9efc-ba6756ba3c4d.html" target="_blank">Google reported more than 2 billion monthly active G Suite users. </a> If you&#39;re familiar with the powerful and largely free to use tools available to you in your Google Cloud, then you have a great headstart. The content for each lesson or tutorial can be written just like any other document in your google docs accout making it a familiar place for instructors to write their content. There are some very simple formatting steps you&#39;ll need to take to prepare your google doc for export into your custom codelab website, however they are straightforward and largely repeatable steps which we will teach you in the next section.</p>
+<p>In addition to being readily available and free for most people around the world to use, The <a href="https://github.com/googlecodelabs/tools" target="_blank">underlying codebase that powers codelabs</a> is completely opensource. This means that anyone can freely build a version of Codelabs that meets their unique needs and the needs of their student audiences.</p>
+<h3 is-upgraded><strong>Free &amp; Inclusive Web Tools </strong></h3>
+<p>As stated above, Google&#39;s G-suite and the underlying code that powers a codebase website are largely free for anyone, from anywhere in the world to use. This means that there are no licensing fees or out-of-pocket expenses that might prohibit someone from sharing what the know in a codelabs style website of their own. Generally, once you have some course content ready in Google Docs and your codelabs website ready to deploy, instructors will need a place to host the website and a domain name so students can access it online. </p>
+<p>The cost to secure a domain name and host a website can vary dramatically from provider to provider, however, our mission here is to help anyone start a instructional website regarless of their ability to pay and of their ability to write code. So, for this tutorial we will introduce you to <a href="https://www.freenom.com/" target="_blank">Freenom</a>, a free domain name registrar and to <a href="https://firebase.google.com/products/hosting" target="_blank">Firebase</a>, which offers a very generous free tier of backend hosting services. Combined, This tutorial we&#39;ll call &#34;FireLabs&#34; presents a solution that anyone wishing to author and share instructional content online can do it in a highly professional and secure way with no out of pocket costs. </p>
+<h3 is-upgraded><strong>Accessibility For Diverse Student Need Mobile, Desktop</strong></h3>
+<p>Using responsive design techniques,  your instructional website will function and look great on mobile <strong>and</strong> desktop screens, from a single code base and no need to build seperate website versions for different device types. If you&#39;re considering writing tutorials for students, maximumizing their ability to access the information is key as not all of your students will be accessing your lessons from a desk top or newest iPhone - being inclusive and eliminating barriers to entry for your students is key. </p>
+<h2 is-upgraded><strong>What you&#39;ll build</strong></h2>
+<p>In this Firelabs tutorial, you&#39;re going to build you&#39;re very own version of Google&#39;s wildly successful CodeLabs website. Your version of the app will:</p>
+<ul>
+<li>Help you build and share your own repositiry of learning content for any subject matter.</li>
+<li>Use responsive design, so it works on desktop or mobile for maximum accessibility.</li>
+<li>Be fast and secure.</li>
+<li>Be customized to meet your branding needs.</li>
+<li>Be easy for instructors write and publish content on regardless of their ability to code.</li>
+<li>Be (to the best of our ability) 100% free for you to develop and host securly online. </li>
+</ul>
+<p class="image-container"><img style="width: 624.00px" src="img/c457add346b8dcdb.png"></p>
+<aside class="warning"><p><strong>⚠️ Note:</strong> This tutorial is for developers who want to customize the Google Codelabs application for themselves or for a client (or whatever). Codelabs makes it easy for anyone to deploy instructional content to the web without having to code, but to build the codelabs environment (which is what we are doing here) requires some softward development experience (i.e. ability to work in terminal, experience with build tools like Golang, Java, Node, NPM, etc.). This &#34;Firelabs&#34; tutorial is intended to help the developer build custom instruction and learning web apps that are inclusive and as free to use as it gets for instructors and teachers. </p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="System Requirements &amp;  Demo Lesson Content" duration="15">
+        <h2 is-upgraded><strong>System Requirements</strong></h2>
+<p><br>Dev environment set-up is beyond the scope of this tutorial and we&#39;re assuming that if you don&#39;t have one (or any) of these tools installed that you are able to install them based on your systems requirements. We&#39;ve included some information about what each tool does and a link to a helpful installation guide. If you get stuck drop me a line and I&#39;ll try to help get you set up. In addition to these tools you&#39;ll need an IDE. We using <a href="https://code.visualstudio.com/" target="_blank">Visual Studio</a> but you&#39;re welcome to use what works best for you. </p>
+<h3 is-upgraded><strong>Development Tools:</strong></h3>
+<table>
+<tr><td colspan="1" rowspan="1"><p class="image-container"><img style="width: 131.00px" src="img/33a0c1e59cea250b.png"></p>
+</td><td colspan="1" rowspan="1"><p>Node.js is an open-source, cross-platform, back-end JavaScript runtime environment and NPM is a package manager that will use to install all of the dependencies. Boh Node.js and NPM must be installed on your machine. To test ,type the following terminal commands: </p>
+<p>$ node -v  to determine if node is installed and if so what version, and  next $ npm -v to determin if npm is installed and if so what version.</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p class="image-container"><img style="width: 131.00px" src="img/d6fab4fdd4ea9bbd.png"></p>
+</td><td colspan="1" rowspan="1"><p>Download Here: <a href="https://go.dev/dl/" target="_blank">https://go.dev/dl/</a></p>
+<p>Go is automatically installed in ../usr/local/go </p>
+<p>Go is an open source programming language that makes it easy to build simple, reliable, and efficient software. Why do we need it? The CodeLab developers built the CLAAT tool using go. The CLAAT is the software that converts the Google Doc into a CodeLab format. We will need Go installed to install and configure CLAAT to work for us.$ go version to confirm it&#39;s installed and the current version. Once installed run the following terminal commands to add go to your bash profile: <br>$ <code>export GOPATH=$HOME/go</code><br><code>$ export GOROOT=/usr/local/go</code><br><code>$ export PATH=$PATH:$HOME/go/bin</code></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p class="image-container"><img style="width: 131.00px" src="img/422a80dc8f3d2449.png"></p>
+</td><td colspan="1" rowspan="1"><p>Gulp is a build tool for minifying code, optimizing images, preprocessing CSS and more. To determine if Gulp is installed use $ gulp -v </p>
+<p>To install the Gulp CLI use: $: npm install -g gulp-cli</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p class="image-container"><img style="width: 131.00px" src="img/91e25f193c455440.png"></p>
+</td><td colspan="1" rowspan="1"><p>Firebase is a platform developed by Google for creating and deploying mobile and web applications that are scalable and secure. There are many different ways you can deploy and host your Firelab web application but Firebase has an excellent free tier and provides SSL encryption. If you don&#39;t have a Firebase account yet you can open one here using your gmail address: <a href="https://firebase.google.com/products/hosting" target="_blank">https://firebase.google.com/products/hosting</a>. To install the firebase tools locally on your machine use: <br><code>npm -g install firebase-tools</code></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><a href="https://github.com/googlecodelabs/tools/tree/master/claat#install" target="_blank"><strong>claat</strong></a></p>
+</td><td colspan="1" rowspan="1"><p>Claat is the command line tool we&#39;ll use to prepare the google docs tutorials for publication within the FireLabs app. The claat tool should be innstalled in your Go environment ... <code>$HOME/go/bin</code> directory. To ensure you have privilidges in that directory use $ <code>chmod u+x claat</code></p>
+</td></tr>
+</table>
+<h2 is-upgraded><strong>Lesson / Lab Content</strong></h2>
+<h2 is-upgraded><strong>A Great Learning App Starts With A Great Instructor &amp; Great Content!</strong></h2>
+<p>Currating educational material and presenting it online it in a way that&#39;s easy for students to consume is a powerful, in-demand skill. Before we get started with any server side work, let&#39;s secure the training content we will use for this tutorial. We&#39;ll make sure it&#39;s set up now and then circle back to it later, once we have the FireLabs system deployed.</p>
+<p>One key feature that the original CodeLabs deverlopers included is the ability for the lesson author to write the training materials in their google cloud / docs application environment as opposed to having to work in markedown or html or a WISYGIG type editor interface like WordPress. Once the training materials are ready to publish, the trainer can place the content in a google cloud folder and share the file(s) with the developer for processing and publishing online.</p>
+<p>For this tutorial we will assume you&#39;re a developer for a global commercial aircraft manufacturer. The engineering teams for three versions of aircraft have new crew training manuals they would like you publish in a CodeLabs format online. They provided you with the following links to each of the three tutorials:</p>
+<p><strong>Tutorial #1: </strong><a href="https://bit.ly/firelabs-aviation-b737-9" target="_blank">https://bit.ly/firelabs-aviation-b737-9</a></p>
+<p><strong>Tutorial #2:  </strong><a href="https://bit.ly/firelabs-aviation-b777" target="_blank">https://bit.ly/firelabs-aviation-b777</a> </p>
+<p><strong>Tutorial #3= </strong><a href="https://bit.ly/firelabs-aviation-b787-8" target="_blank">https://bit.ly/firelabs-aviation-b787-8</a></p>
+<p class="image-container"><img style="width: 581.72px" src="img/dcefdd2e7f85ac18.gif"></p>
+<p>As the developer, you will need to have admin authorization into the google account where the tutorals were written or (and the more likely scenario) you will need to click on each one and make a local copy of each one in a google environment you control. To do this simply visit each link, find the &#34;Share&#34; button and send a copy of the tutorials to your google cloud account using your @gmail account.  </p>
+<p>Next, head back over to your gmail / google docs you&#39;ll see the tutorial in a folder called &#34;Shared With Me&#34;. From there you can set up your folder structure in a way that makes sense for you and move the tutrial to it&#39;s new permanent home in your cloud account. Below is an image on way we store our CodeLabs in Google Cloud. You can see the We have the following Path: <br>FireLabs &gt; Courses &gt; Aviation &gt; ...</p>
+<p class="image-container"><img style="width: 632.83px" src="img/5a53f792591ef61.png"></p>
+<aside class="warning"><p><strong>⚠️ Note:</strong> With the system requirements in place and the lesson content ready to publish from your Google cloud, we can move into a build environment and start to create our web app.</p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Clone &amp; Develop Your FireLabs Web App" duration="12">
+        <h2 is-upgraded><strong>Clone A Copy Of The FireLabs Github Repository</strong></h2>
+<p>We&#39;ve put everything you need for this project into this <a href="https://github.com/chrisberno/firelabs" target="_blank">Github repo</a>. To get started, you&#39;ll need to clone a copy of the project to your local development area. You can click the dowload button to get a .zip copy of the files on your computer or you can use the $ git clone command from your teminal: </p>
+<table>
+<tr><td colspan="1" rowspan="1"><p><a href="https://github.com/chrisberno/firelabs" target="_blank"><paper-button class="colored" raised><iron-icon icon="file-download"></iron-icon>Download source code</paper-button></a></p>
+</td><td colspan="1" rowspan="1"><p>$ git clone <a href="https://github.com/chrisberno/firelabs" target="_blank">https://github.com/chrisberno/firelabs</a></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><img style="width: 321.74px" src="img/33d8cd01b7e7fb5.png"><br>Download from Github</p>
+</td><td colspan="1" rowspan="1"><p><img style="width: 298.00px" src="img/f6b2a716329fefca.gif"><br>Use gitclone command</p>
+</td></tr>
+</table>
+<aside class="warning"><p><strong>⚠️ Caution: Getting Errors? Check Your Paths!</strong> Earlier we told you that it&#39;s important place this file withing the &#34;Go&#34; environment on your computer. If you are getting errors, make sure that your version of Firelabs is located in the correctly directory ../Go/src/github.com/..&lt;firelabs fogoes here&gt;. Please see the file diagram below. Also once, Go, Gulp, Claat and FireLabs are downloaded, add the following to your bash_profile: with this command :</p>
+<p><code>export PATH=$PATH:$HOME/go/bin</code></p>
+<table>
+<tr><td colspan="1" rowspan="1"><p><img style="width: 307.28px" src="img/6952e43d1234108a.png"><br>Navigate into firelabs foldder</p>
+</td><td colspan="1" rowspan="1"><p><img style="width: 310.00px" src="img/1f7c5d88b700db65.gif"><br>Set $PATH</p>
+</td></tr>
+</table>
+</aside>
+<h2 is-upgraded><strong>Install &amp; Test The Firelabs-Site Folder Dependencies</strong></h2>
+<p>Once you have the project cloned, navigate into the site folder to install the dependencies</p>
+<ul>
+<li>Navigate into the FireLabs root directory with: <em>$ cd site/  </em>or <em>$ cd firelabs/</em></li>
+<li>Then install the dependencies with the NMP command using  - $: npm install</li>
+<li>Then install Gulp into the project with:<code>npm install -g gulp-cli</code></li>
+</ul>
+<table>
+<tr><td colspan="1" rowspan="1"><p><img style="width: 304.33px" src="img/358c02a860784bf9.gif"><br>Navigate into firelabs folder</p>
+</td><td colspan="1" rowspan="1"><p><img style="width: 310.00px" src="img/f6b2a716329fefca.gif"><br>Install dependencies</p>
+</td></tr>
+</table>
+<p>To ensure the site-dependencies installed properly we can run a quick test using Gulp. We&#39;ll use gulp to serve up a local version of the webapp and make sure it looks ok by using the following gulp command:</p>
+<ul>
+<li>Run the gulp serve command to launch the development demo: $ gulp serve</li>
+<li>Once gulp serve is running, go to http://localhost:8000 from your browser.</li>
+<li>If you see the FireLabs shell template - Success! We&#39;re ready to start importing content.</li>
+<li>To quit the dev server use: $ ‘command&#39; + c </li>
+</ul>
+<table>
+<tr><td colspan="1" rowspan="1"><p><img style="width: 304.33px" src="img/f8cfe34ea5b4d757.png"><br>$ gulp serve</p>
+</td><td colspan="1" rowspan="1"><p><img style="width: 334.16px" src="img/89a24f901fe8e8de.png"><br>Dev site - http://localhost:8000</p>
+</td></tr>
+</table>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Convert &amp; Load Lesson Content" duration="1">
+        <h2 is-upgraded>Step 1: <strong>Create a Directory For The Lesson Content / Tutorials</strong></h2>
+<p>No matter what you call them, lessons, tutorials, labs, etc., the claat tool needs two things to successfully convert your goodle doc into a formatted lesson for your FireLabs installation. The first is a local directory / folder within the ‘site&#39; root directory to place each doc and the google document I.D. First we&#39;ll make the directory within our FirLabs ‘site&#39; direcotry where we can run claat commands and store all of our converted content.  Ok, lets build some space for our content with the following steps:</p>
+<ul>
+<li>Create a firelabs folder to place your lessons using: $ mkdir firelabs</li>
+<li>Navigate into the new firelabs folder with the ‘cd&#39; command: $ cd firelabs</li>
+<li>Inside the firelabs folder create an assets folder to store media files: $ mkdir assets</li>
+<li>Your directory structure should look like this:</li>
+<li><code>tools</code></li>
+<li><code>|-- site</code></li>
+<li><code>|--|-- firelabs</code></li>
+<li><code>|--|--|-- assets</code></li>
+</ul>
+<h2 is-upgraded>Step2: Get DOC I.D. &amp; Convert Content With CLAAT Tool</h2>
+<p>In part 0, step 2 we gathered up the starter lessons we&#39;re going to use to get started. You should have conpied the aviation templates into your google cloud account or created your own lesson content. Before we can run the claat tool we need to get the document I.D. for each of the lessons we want to convert. To get the document id head over to your google cloud and open up each lesson in a seperate browsers tab. In the URL you&#39;ll find a string of characters that looks something like this:</p>
+<p class="image-container"><img style="width: 624.00px" src="img/e5d0ee0ed366861f.png"></p>
+<p>Once we have our dedicated folder and Doc I.D.(s) claat can make a copy of the google doc, convert it to html and store it a new subfolder. To get started on your first claat conversion, head back into the firelabs folder and let&#39;s execute a claat conversion with the following steps:</p>
+<ul>
+<li>From your terminal, navigate into our new ‘firelabs&#39; folder:<em>$ cd firelabs</em></li>
+<li>From the ‘firelabs&#39; folder we will run the following claaat command followed the Doc ID we&#39;re working with: </li>
+</ul>
+<p><em>$ claat export 1oW8GxEQXIOIdgW_Btnsv-fLpi-ucLS0W9F6gpF0urxI</em></p>
+<table>
+<tr><td colspan="1" rowspan="1"><p><img style="width: 304.33px" src="img/25b5598f6cde90ae.gif"><br>Find &amp; Copy your DOCID </p>
+</td><td colspan="1" rowspan="1"><p><img style="width: 310.00px" src="img/555851462dd71ab9.gif"><br>$ Claat export</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"></td><td colspan="1" rowspan="1"></td></tr>
+</table>
+<aside class="warning"><p><strong>⚠️ Caution:</strong> If you get an error when running the claat command (e.g. -bash: claat: command not found), the actions we took in step x to put the claat tool in our $PATH may not have been set properly. Try to run the <code>$ export PATH=$PATH:$HOME/go/bin</code> again from inside of the firelabs directory. Then run the following test command:  <code>$ which claat</code>  to confirm that the claat tool is now operational.  The output should provive a the locaton of claat and look something like this: Users/home/</p>
+</aside>
+<p>If the claat export process worked properly you should have a new folder in the ‘firelabs&#39; directory that&#39;s named automatically during the export process. In this case the new folder is named boeing-b787-8 if you navigate into that directory, you&#39;ll see three additional files there codelab.json, img and index.html. Congratulations! You&#39;ve successfully eported a google doc from the cloud and configured it into a web-ready format that we can publish online via your own firelabs web app. Your directory structure should look like this ... </p>
+<p><code>tools</code></p>
+<p><code>|-- site</code></p>
+<p><code>|--|-- firelabs</code></p>
+<p><code>|--|--|-- assets  boeing-b787-8</code></p>
+<p><code>|--|--|--|-- codelab.json   img   index.html</code><br></p>
+<h2 is-upgraded><strong>Step 3: Load Lesson Content &amp; Retest</strong></h2>
+<p>Now that we have the webapp configured and our first lesson folder ready it&#39;s time publish the content on the home page. To do this we will use the Gulp command again, only this time add some additional instructions on where to pull lesson content from within the ‘firelabs&#39; directory. Remember, we run the gulp serve command from the site directory or root level, so navigate there and run gulp to test that our new content is publishing properly:</p>
+<ul>
+<li>CD into the Site folder from your firelabs folder:  <em>$ cd ..</em></li>
+<li>Run the new Gulp command <code>$ gulp serve --codelabs-dir=firelabs</code></li>
+<li>Once gulp serve is running, go to http://localhost:8000 from your browser.</li>
+<li>This time you should see the lesson card presened on the home page. If so, Contratulations again! Feel free to click around and see how it looks and works.</li>
+</ul>
+<p class="image-container"><img style="width: 624.00px" src="img/94920c16b633cd0b.gif"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Production Build &amp; Deploy To Firebase" duration="0">
+        <p>In steps 0,1 and 2 we set up the development environment, got a local copy of FireLabs installed and integrated the claat tool so we can convert google cloud lesson content to html. We used the Gulp build tools to test along the way and now it&#39;s finaly time to publish our FireLabs learning web app live on the web and start helping people learn awesome new skills. </p>
+<p>First things first, we&#39;ll start by building a distribution folder where firebase can look for instructions and files to publish online. We&#39;ll use gulp to build the /dist folder with the following command run from the our /site directory:</p>
+<p><em><code>$ gulp serve:dist --codelabs-dir=codelabs</code></em></p>
+<table>
+<tr><td colspan="1" rowspan="1"><p><img style="width: 304.33px" src="img/92e750edbe963407.gif"><br>$ gulp serve:dist (pt. 1)</p>
+</td><td colspan="1" rowspan="1"><p><img style="width: 310.00px" src="img/ecdff018ff314d.gif"><br>$ gulp serve:dist (pt. 2)</p>
+</td></tr>
+</table>
+<p>The web app is now fully optimized and being served from a new /dist folder you&#39;ll find located in the /site directory. Check your <a href="http://localhost:8000" target="_blank">http://localhost:8000</a> and make sure everything looks and works properly and if so we&#39;re done with all of our local tasks and it&#39;s time to publish our learning site live on the web!</p>
+<p>We will be using Firebase to host our web application. If you are new to Firebase, there many great tutorials on youtube which we&#39;ll provide links to, but we intentionally will go into a little more detail here so that even a first time firebase user can get FireLabs deployed. To host your site with Firebase Hosting, we will install / update the Firebase CLI, initiate our FireLabs web app as a Firebase project</p>
+<ul>
+<li>In the Root / Home directory Run the following npm command to install the CLI or update to the latest CLI version: <em>npm install -g firebase-tools</em></li>
+<li>Next, from the root directory (which for us is /site) authenticate Firbase using the following terminal command:  <em>firebase login</em></li>
+<li>Once authenticated we can initialize the project using: <em>firebase init</em></li>
+<li>Use your arrow keys to move the curser to this ❯◯ Hosting: Configure files for Firebase Hosting and (optionally) set up GitHub and press the spacebar key to select it. Then hit enter. </li>
+</ul>
+<table>
+<tr><td colspan="1" rowspan="1"><p><img style="width: 304.33px" src="img/47ea99a41aeb0357.gif"><br>$ firbase init</p>
+</td><td colspan="1" rowspan="1"><p><img style="width: 310.00px" src="img/6c8ab58ca4bd5770.png"><br>Select Firebase hosting</p>
+</td></tr>
+</table>
+<ul>
+<li>Next you&#39;ll be asked a series of short questions. First, is if this is a new or an existing project. If you already created a folder for your FireLabs webapp in the Firebase consule then select ‘existing project&#39; and you&#39;ll be able to select it from a list and proceed. If not, select ‘new&#39; and you can set up the hosting account from the next screen.<br></li>
+<li>Be sure that when asked what directory you want to use as public directory you type dist as we are now service from the /dist directory. </li>
+</ul>
+<table>
+<tr><td colspan="1" rowspan="1"><p><img style="width: 304.33px" src="img/7f45d08fd9f6550d.png"><br>Did you already create a folder for firlabs in yoru firebase acct?</p>
+</td><td colspan="1" rowspan="1"><p><img style="width: 310.00px" src="img/9103034e4721f83a.gif"><br>Make dist the public directory for firebase</p>
+</td></tr>
+</table>
+<ul>
+<li>If Firebase was able to initialize the project you&#39;ll get a success notification. </li>
+<li>We are now ready to use Firebase as our webserver and to confirm everything is working perfectly before we deploy, run one last test command using <em>$ firebase serve</em></li>
+<li>If everyting tests out ok you should be directed to <a href="http://localhost:5000" target="_blank">http://localhost:5000</a> and be able to see the web application looking and functioning properly only this time it&#39;s not Gulp but firebase powering it. If everything looks good - it&#39;s time to deploy live on the web. </li>
+</ul>
+<table>
+<tr><td colspan="1" rowspan="1"><p><img style="width: 304.33px" src="img/31e44d7a3ebc7e7a.png"><br>Test locally: $ firebase serve</p>
+</td><td colspan="1" rowspan="1"><p><img style="width: 310.00px" src="img/ec417d59bd0e686d.gif"><br>Successful Test @ localhost:5000 via Firebase</p>
+</td></tr>
+</table>
+<ul>
+<li>Finally the moment you&#39;ve been waiting for. We&#39;re ready to publish our FireLabs learning webapp live on the internet. All you need is one comnand to push the Firlabs files to Firebase and serve them live with https encryption. To push your Firelab live run <em>$ firebase deploy </em></li>
+</ul>
+<p><img style="width: 610.00px" src="img/aeed2a157f0b5981.png"><br>Publish live to the web: $ firebase deploy                                  Successfuly Deployed on Firebase and Live on The Web</p>
+<aside class="special"><p><strong>Note:</strong> You&#39;ve reached the end of this FireLabs tutorial!</p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Congratulations" duration="0">
+        <p>Congratulations, you&#39;ve successfully built to production and deployed your first Ed-Tech App! </p>
+<p>You installed the required tools and setup a local development environment, installed the claat binary and learned how to convert google docs into attractive and easy to use training materials that will make online learning easier for both student and instructors. Last, but not least you configured the application and deployed live on the web using Firebase. You Rock! But there is still a lot of work to be done. </p>
+<p>An ed tech application should provide value to both insturctors and learners and to be truely valuable it needs a lot more lesson content added then just the demo-only content we have now. Your FireLabs ed-tech app also needs well defined lesson categories and better search features to make it easy for users to find what they are looking for. You  or your client will probably want to customize the look and feel to better match current branding or personal preferences. In the What&#39;s Next section below, I will list other tutorials in the <strong>FireLabs Opensource Ed-Tech Web Application </strong>series </p>
+<p>If you&#39;re interested in getting more involved in the <a href="https://github.com/chrisberno/firelabs" target="_blank">FireLabs Ed-Tech Web App</a> project or would like to have a version developed for your organization please reach out to me via email <a href="mailto:chris.berno@gmail.com" target="_blank">here</a> or message me on twitter <a href="https://twitter.com/chrisberno" target="_blank">@chrisberno</a></p>
+<h2 is-upgraded><strong>Reference Links</strong></h2>
+<ul>
+<li><a href="https://github.com/chrisberno/firelabs" target="_blank">FireLabs Github Repository</a></li>
+<li><a href="https://github.com/googlecodelabs/tools" target="_blank">Google&#39;s Codelabs Github Repository</a></li>
+<li><a href="https://www.youtube.com/watch?v=pDpptrDcwgM&list=PLMvAapb_inTs6Ckm6n6wDqvdhmUv1J0ht&index=100" target="_blank">Dr. Wu-chang Feng - Google CodeLabs Setup Video</a></li>
+<li>Example: <a href="https://codelabs.cs.pdx.edu/" target="_blank">Portland State&#39;s CodeLabs Deployment</a></li>
+<li>Zarin Lokhandwala Tutorial: <a href="https://medium.com/@zarinlo/publish-technical-tutorials-in-google-codelab-format-b07ef76972cd?source=user_profile---------0----------------------------" target="_blank">Publish Technical Tutorials in Google Codelab Format</a></li>
+<li><a href="https://codelabs.solace.dev/codelabs/codelab-4-codelab/index.html?index=..%2F..index#0" target="_blank">Solace.Dev Google CodeLabs Setup Tutorial</a></li>
+<li>Example: <a href="https://codelabs.solace.dev/" target="_blank">Solace.Dev CodeLabs</a></li>
+</ul>
+<h2 is-upgraded><strong>What&#39;s next?</strong></h2>
+<p>Take your FireLabs Ed-Tech App to the next level with these ...</p>
+<ul>
+<li>How to point a custom domain name to your FireLabs web app &lt;Coming Soon&gt;</li>
+<li>??? &lt;Coming Soon&gt;</li>
+<li>??? &lt;Coming Soon&gt;</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
